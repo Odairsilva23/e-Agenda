@@ -65,7 +65,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\TBTarefa.sql" />
     <Build Include="Security\Permissions.sql" />
-    <Build Include="dbo\Tables\TBcontatos.sql" />
-    <Build Include="dbo\Tables\TBCompromisso.sql" />
+    <Build Include="dbo\Tables\TBContato.sql" />
+    <Build Include="dbo\Tables\TBCOMPROMISSO.sql" />
   </ItemGroup>
 </Project>

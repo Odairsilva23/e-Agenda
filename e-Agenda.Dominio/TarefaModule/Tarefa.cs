@@ -1,62 +1,84 @@
-﻿using System;
+﻿using eAgenda.Dominio.Shared;
+using System;
+using System.Collections.Generic;
 
-namespace eAgenda.Dominio
+namespace eAgenda.Dominio.TarefaModule
 {
-    public class Tarefa : EntidadeBase
-    {
-        public string Titulo;
-        public DateTime DataCriacao;
-        public DateTime? DataConclusao;
-        public int Percentual;
-
-        public Tarefa(string titulo, DateTime dataCriacao, PrioridadeEnum prioridade) 
-        {
+    public class Tarefa : EntidadeBase, IEquatable<Tarefa>
+    {        
+        public Tarefa(string titulo, DateTime dataCriacao, PrioridadeEnum prioridade)
+        {            
             Titulo = titulo;
-            Prioridade = new Prioridade(prioridade);
-            DataCriacao = dataCriacao;
+            DataCriacao = dataCriacao.Date;
+            Prioridade = new Prioridade(prioridade);            
         }
 
-        public Prioridade Prioridade { get; set; }        
 
-        public StatusEnum Status
-        {
-            get
-            {
-                return Percentual == 100 ? StatusEnum.Finalizada : StatusEnum.Pendente;
-            }
-        }
+        public string Titulo { get; }
 
-        public void AtualizarPercentual(int p)
+        public Prioridade Prioridade { get; }
+
+        public DateTime DataCriacao { get;  }
+
+        public int Percentual { get; private set; }
+
+        public DateTime? DataConclusao { get; private set; }        
+
+        public void AtualizarPercentual(int percentual, DateTime dataConclusao)
         {
-            Percentual = p;
+            Percentual = percentual;
 
             if (Percentual == 100)
             {
-                DataConclusao = DateTime.Now.Date;
+                DataConclusao = dataConclusao;
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Tarefa);
+        }
+
+        public bool Equals(Tarefa other)
+        {
+            return other != null &&
+                   Id == other.Id &&
+                   Titulo == other.Titulo &&
+                   DataConclusao == other.DataConclusao &&
+                   Percentual == other.Percentual &&
+                   EqualityComparer<Prioridade>.Default.Equals(Prioridade, other.Prioridade) &&
+                   DataCriacao == other.DataCriacao;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1307587567;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Titulo);
+            hashCode = hashCode * -1521134295 + DataConclusao.GetHashCode();
+            hashCode = hashCode * -1521134295 + Percentual.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Prioridade>.Default.GetHashCode(Prioridade);
+            hashCode = hashCode * -1521134295 + DataCriacao.GetHashCode();
+            return hashCode;
         }
 
         public override string Validar()
         {
             string resultadoValidacao = "";
 
-            if (Percentual < 0 || Percentual > 100)
-            {
+            if (string.IsNullOrEmpty(Titulo))            
+                resultadoValidacao = "O campo Título é obrigatório";
 
-                resultadoValidacao += "Percentual não pode ser menor que 0 nem maior que 100 !! \n";
-            }
-
-
-            if (DataCriacao > DataConclusao)
-            {
-                resultadoValidacao += "Data de criação não pode ser maior que data conclusão \n";
-            }
-
-            if (string.IsNullOrEmpty(resultadoValidacao))
+            if (DataCriacao == DateTime.MinValue)           
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data de Criação é obrigatório";
+            
+            if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
 
             return resultadoValidacao;
         }
+
+
 
     }
 }

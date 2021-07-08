@@ -80,7 +80,6 @@ namespace eAgenda.ConsoleApp.TarefaModule
                     compromisso.HoraFim, compromisso.LinkWEB, compromisso.Contato.Nome);
             }
         }
-
         public override Compromisso ObterRegistro(TipoAcao tipoAcao)
         {
 

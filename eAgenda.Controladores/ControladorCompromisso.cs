@@ -6,8 +6,7 @@ using System.Data;
 namespace eAgenda.Controladores
 {
     public class ControladorCompromisso : Controlador<Compromisso>
-    {
-        
+    {  
         #region queries
         private const string sqlInserirCompromisso =
              @"INSERT INTO [TBCOMPROMISSO]
@@ -211,7 +210,6 @@ namespace eAgenda.Controladores
 
         private Compromisso ConverterEmCompromisso(IDataReader reader)
         {
-
                 var assunto = Convert.ToString(reader["ASSUNTO"]);
                 var local = Convert.ToString(reader["LOCAL"]);
                 var dataagendada = Convert.ToDateTime(reader["DATAAGENDADA"]);

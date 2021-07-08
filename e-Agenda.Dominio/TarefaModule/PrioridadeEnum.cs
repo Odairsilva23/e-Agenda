@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace eAgenda.Dominio
+namespace eAgenda.Dominio.TarefaModule
 {
     public enum PrioridadeEnum : int
     {

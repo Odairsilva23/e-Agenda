@@ -1,0 +1,43 @@
+﻿-- Script Date: 05/07/2021 18:32  - ErikEJ.SqlCeScripting version 3.5.2.87
+SELECT 1;
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE [TBTarefa] (
+  [Id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+, [Titulo] nvarchar(500) NOT NULL COLLATE NOCASE
+, [DataCriacao] datetime NOT NULL
+, [DataConclusao] datetime NULL
+, [Prioridade] int NOT NULL
+, [Percentual] int NOT NULL
+);
+CREATE TABLE [TBCONTATO] (
+  [Id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+, [Nome] nvarchar(100) NOT NULL COLLATE NOCASE
+, [Email] nvarchar(100) NOT NULL COLLATE NOCASE
+, [Telefone] nvarchar(20) NOT NULL COLLATE NOCASE
+, [Cargo] nvarchar(100) NULL COLLATE NOCASE
+, [Empresa] nvarchar(100) NULL COLLATE NOCASE
+);
+CREATE TABLE [TBCOMPROMISSO] (
+  [Id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+, [Local] nvarchar(300) NULL COLLATE NOCASE
+, [Data] datetime NOT NULL
+, [HoraInicio] bigint NOT NULL
+, [HoraTermino] bigint NOT NULL
+, [Link] nvarchar(1000) NULL COLLATE NOCASE
+, [Assunto] nvarchar(300) NULL COLLATE NOCASE
+, [Id_Contato] int NULL
+, CONSTRAINT [FK_TBCOMPROMISSO_TBCONTATO] FOREIGN KEY ([Id_Contato]) REFERENCES [TBCONTATO] ([Id]) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+INSERT INTO [TBTarefa] ([Id],[Titulo],[DataCriacao],[DataConclusao],[Prioridade],[Percentual]) VALUES (
+635,'Preparar aula','2021-07-01 00:00:00.000',NULL,0,0);
+INSERT INTO [TBTarefa] ([Id],[Titulo],[DataCriacao],[DataConclusao],[Prioridade],[Percentual]) VALUES (
+636,'Corrigir Provas','2021-07-01 00:00:00.000',NULL,1,0);
+INSERT INTO [TBTarefa] ([Id],[Titulo],[DataCriacao],[DataConclusao],[Prioridade],[Percentual]) VALUES (
+637,'Implementar Atividades','2021-07-01 00:00:00.000','2021-07-01 00:00:00.000',2,100);
+INSERT INTO [TBCOMPROMISSO] ([Id],[Local],[Data],[HoraInicio],[HoraTermino],[Link],[Assunto],[Id_Contato]) VALUES (
+281,'NDD','2021-07-12 00:00:00.000',594000000000,630000000000,'Meet.com','Asuntos externos',NULL);
+CREATE TRIGGER [fki_TBCOMPROMISSO_Id_Contato_TBCONTATO_Id] BEFORE Insert ON [TBCOMPROMISSO] FOR EACH ROW BEGIN SELECT RAISE(ROLLBACK, 'Insert on table TBCOMPROMISSO violates foreign key constraint FK_TBCOMPROMISSO_TBCONTATO') WHERE NEW.Id_Contato IS NOT NULL AND(SELECT Id FROM TBCONTATO WHERE  Id = NEW.Id_Contato) IS NULL; END;
+CREATE TRIGGER [fku_TBCOMPROMISSO_Id_Contato_TBCONTATO_Id] BEFORE Update ON [TBCOMPROMISSO] FOR EACH ROW BEGIN SELECT RAISE(ROLLBACK, 'Update on table TBCOMPROMISSO violates foreign key constraint FK_TBCOMPROMISSO_TBCONTATO') WHERE NEW.Id_Contato IS NOT NULL AND(SELECT Id FROM TBCONTATO WHERE  Id = NEW.Id_Contato) IS NULL; END;
+COMMIT;
+

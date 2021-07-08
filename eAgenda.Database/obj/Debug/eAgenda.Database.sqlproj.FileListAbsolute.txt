@@ -1,0 +1,6 @@
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Database\bin\Debug\eAgenda.Database.dacpac
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Database\bin\Debug\eAgenda.Database.dll
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Database\bin\Debug\eAgenda.Database.pdb
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Database\obj\Debug\eAgenda.Database.sqlproj.AssemblyReference.cache
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Database\obj\Debug\eAgenda.Database.dll
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Database\obj\Debug\eAgenda.Database.pdb

@@ -1,11 +1,11 @@
-﻿using eAgenda.Dominio;
+﻿using eAgenda.ConsoleApp.Shared;
 using System;
 
 namespace eAgenda.ConsoleApp
 {
     class Program
     {
-        static TelaPrincipal telaPrincipal = new TelaPrincipal();
+        static readonly TelaPrincipal telaPrincipal = new TelaPrincipal();
 
         static void Main(string[] args)
         {
