@@ -26,22 +26,22 @@
         </member>
         <member name="M:Microsoft.Data.Sqlite.Properties.Resources.InvalidCommandType(System.Object)">
             <summary>
-            The CommandType '{commandType}' is invalid.
+            The CommandType '{commandType}' is not supported.
             </summary>
         </member>
         <member name="M:Microsoft.Data.Sqlite.Properties.Resources.InvalidIsolationLevel(System.Object)">
             <summary>
-            The IsolationLevel '{isolationLevel}' is invalid.
+            The IsolationLevel '{isolationLevel}' is not supported.
             </summary>
         </member>
         <member name="M:Microsoft.Data.Sqlite.Properties.Resources.InvalidParameterDirection(System.Object)">
             <summary>
-            The ParameterDirection '{direction}' is invalid.
+            The ParameterDirection '{direction}' is not supported.
             </summary>
         </member>
         <member name="M:Microsoft.Data.Sqlite.Properties.Resources.KeywordNotSupported(System.Object)">
             <summary>
-            Keyword not supported: '{keyword}'.
+            Connection string keyword '{keyword}' is not supported. For a possible alternative, see https://go.microsoft.com/fwlink/?linkid=2142181.
             </summary>
         </member>
         <member name="M:Microsoft.Data.Sqlite.Properties.Resources.MissingParameters(System.Object)">
@@ -81,7 +81,7 @@
         </member>
         <member name="P:Microsoft.Data.Sqlite.Properties.Resources.TransactionConnectionMismatch">
             <summary>
-            The transaction object is not associated with the connection object.
+            The transaction object is not associated with the same connection object as this command.
             </summary>
         </member>
         <member name="P:Microsoft.Data.Sqlite.Properties.Resources.TransactionRequired">
@@ -101,7 +101,7 @@
         </member>
         <member name="P:Microsoft.Data.Sqlite.Properties.Resources.DefaultNativeError">
             <summary>
-            For more information on this error code see http://sqlite.org/rescode.html
+            For more information on this error code see https://www.sqlite.org/rescode.html
             </summary>
         </member>
         <member name="M:Microsoft.Data.Sqlite.Properties.Resources.AmbiguousParameterName(System.Object)">
@@ -169,15 +169,16 @@
             Stream does not support writing.
             </summary>
         </member>
-        <member name="P:Microsoft.Data.Sqlite.Properties.Resources.EncryptionNotSupported">
+        <member name="M:Microsoft.Data.Sqlite.Properties.Resources.EncryptionNotSupported(System.Object)">
             <summary>
-            You specified a password in the connection string, but the native SQLite library you're using doesn't support encryption.
+            You specified a password in the connection string, but the native SQLite library '{libraryName}' doesn't support encryption.
             </summary>
         </member>
         <member name="T:Microsoft.Data.Sqlite.SqliteBlob">
             <summary>
                 Provides methods to access the contents of a blob.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/blob-io">BLOB I/O</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteBlob.#ctor(Microsoft.Data.Sqlite.SqliteConnection,System.String,System.String,System.Int64,System.Boolean)">
             <summary>
@@ -188,6 +189,7 @@
             <param name="columnName">The name of the column containing the blob.</param>
             <param name="rowid">The rowid of the row containing the blob.</param>
             <param name="readOnly">A value indicating whether the blob is read-only.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/blob-io">BLOB I/O</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteBlob.#ctor(Microsoft.Data.Sqlite.SqliteConnection,System.String,System.String,System.String,System.Int64,System.Boolean)">
             <summary>
@@ -199,26 +201,27 @@
             <param name="columnName">The name of the column containing the blob.</param>
             <param name="rowid">The rowid of the row containing the blob.</param>
             <param name="readOnly">A value indicating whether the blob is read-only.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/blob-io">BLOB I/O</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteBlob.CanRead">
             <summary>
                 Gets a value indicating whether the current stream supports reading.
                 Always true.
             </summary>
-            <value>true if the stream supports reading; otherwise, false.</value>
+            <value><see langword="true" /> if the stream supports reading; otherwise, <see langword="false" />. </value>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteBlob.CanWrite">
             <summary>
                 Gets a value indicating whether the current stream supports writing.
             </summary>
-            <value>true if the stream supports writing; otherwise, false.</value>
+            <value><see langword="true" /> if the stream supports writing; otherwise, <see langword="false" />. </value>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteBlob.CanSeek">
             <summary>
                 Gets a value indicating whether the current stream supports seeking.
                 Always true.
             </summary>
-            <value>true if the stream supports seeking; otherwise, false.</value>
+            <value><see langword="true" /> if the stream supports seeking; otherwise, <see langword="false" />. </value>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteBlob.Length">
             <summary>
@@ -267,7 +270,7 @@
                 Releases any resources used by the blob and closes it.
             </summary>
             <param name="disposing">
-                true to release managed and unmanaged resources; false to release only unmanaged resources.
+                true to release managed and unmanaged resources; <see langword="false" /> to release only unmanaged resources.
             </param>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteBlob.Flush">
@@ -288,7 +291,6 @@
             <summary>
                 Represents the caching modes that can be used when creating a new <see cref="T:Microsoft.Data.Sqlite.SqliteConnection" />.
             </summary>
-            <seealso href="http://sqlite.org/sharedcache.html">SQLite Shared-Cache Mode</seealso>
         </member>
         <member name="F:Microsoft.Data.Sqlite.SqliteCacheMode.Default">
             <summary>
@@ -305,11 +307,15 @@
                 Shared-cache mode. Connections share a cache. This mode can change the behavior of transaction and table
                 locking.
             </summary>
+            <seealso href="https://www.sqlite.org/sharedcache.html">SQLite Shared-Cache Mode</seealso>
         </member>
         <member name="T:Microsoft.Data.Sqlite.SqliteCommand">
             <summary>
                 Represents a SQL statement to be executed against a SQLite database.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/async">Async Limitations</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.#ctor">
             <summary>
@@ -340,7 +346,7 @@
         <member name="P:Microsoft.Data.Sqlite.SqliteCommand.CommandType">
             <summary>
                 Gets or sets a value indicating how <see cref="P:Microsoft.Data.Sqlite.SqliteCommand.CommandText" /> is interpreted. Only
-                <see cref="T:System.Net.Mime.MediaTypeNames.Text" /> is supported.
+                <see cref="F:System.Data.CommandType.Text" /> is supported.
             </summary>
             <value>A value indicating how <see cref="P:Microsoft.Data.Sqlite.SqliteCommand.CommandText" /> is interpreted.</value>
         </member>
@@ -349,6 +355,7 @@
                 Gets or sets the SQL to execute against the database.
             </summary>
             <value>The SQL to execute against the database.</value>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteCommand.Connection">
             <summary>
@@ -379,6 +386,7 @@
                 Gets the collection of parameters used by the command.
             </summary>
             <value>The collection of parameters used by the command.</value>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteCommand.DbParameterCollection">
             <summary>
@@ -395,6 +403,7 @@
             <remarks>
                 The timeout is used when the command is waiting to obtain a lock on the table.
             </remarks>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteCommand.DesignTimeVisible">
             <summary>
@@ -419,7 +428,8 @@
                 Releases any resources used by the connection and closes it.
             </summary>
             <param name="disposing">
-                true to release managed and unmanaged resources; false to release only unmanaged resources.
+                <see langword="true" /> to release managed and unmanaged resources;
+                <see langword="false" /> to release only unmanaged resources.
             </param>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.CreateParameter">
@@ -445,6 +455,8 @@
             </summary>
             <returns>The data reader.</returns>
             <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(System.Data.CommandBehavior)">
             <summary>
@@ -453,6 +465,8 @@
             <param name="behavior">A description of the results of the query and its effect on the database.</param>
             <returns>The data reader.</returns>
             <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReader(System.Data.CommandBehavior)">
             <summary>
@@ -466,10 +480,9 @@
                 Executes the <see cref="P:Microsoft.Data.Sqlite.SqliteCommand.CommandText" /> asynchronously against the database and returns a data reader.
             </summary>
             <returns>A task representing the asynchronous operation.</returns>
-            <remarks>
-                SQLite does not support asynchronous execution. Use write-ahead logging instead.
-            </remarks>
-            <seealso href="http://sqlite.org/wal.html">Write-Ahead Logging</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/async">Async Limitations</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(System.Threading.CancellationToken)">
             <summary>
@@ -477,10 +490,9 @@
             </summary>
             <param name="cancellationToken">The token to monitor for cancellation requests.</param>
             <returns>A task representing the asynchronous operation.</returns>
-            <remarks>
-                SQLite does not support asynchronous execution. Use write-ahead logging instead.
-            </remarks>
-            <seealso href="http://sqlite.org/wal.html">Write-Ahead Logging</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/async">Async Limitations</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(System.Data.CommandBehavior)">
             <summary>
@@ -488,10 +500,9 @@
             </summary>
             <param name="behavior">A description of query's results and its effect on the database.</param>
             <returns>A task representing the asynchronous operation.</returns>
-            <remarks>
-                SQLite does not support asynchronous execution. Use write-ahead logging instead.
-            </remarks>
-            <seealso href="http://sqlite.org/wal.html">Write-Ahead Logging</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/async">Async Limitations</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)">
             <summary>
@@ -500,10 +511,9 @@
             <param name="behavior">A description of query's results and its effect on the database.</param>
             <param name="cancellationToken">The token to monitor for cancellation requests.</param>
             <returns>A task representing the asynchronous operation.</returns>
-            <remarks>
-                SQLite does not support asynchronous execution. Use write-ahead logging instead.
-            </remarks>
-            <seealso href="http://sqlite.org/wal.html">Write-Ahead Logging</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/async">Async Limitations</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)">
             <summary>
@@ -512,6 +522,7 @@
             <param name="behavior">A description of query's results and its effect on the database.</param>
             <param name="cancellationToken">The token to monitor for cancellation requests.</param>
             <returns>A task representing the asynchronous operation.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/async">Async Limitations</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery">
             <summary>
@@ -519,6 +530,7 @@
             </summary>
             <returns>The number of rows inserted, updated, or deleted. -1 for SELECT statements.</returns>
             <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.ExecuteScalar">
             <summary>
@@ -526,6 +538,7 @@
             </summary>
             <returns>The first column of the first row of the results, or null if no results.</returns>
             <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteCommand.Cancel">
             <summary>
@@ -536,6 +549,8 @@
             <summary>
                 Represents a connection to a SQLite database.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/connection-strings">Connection Strings</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/async">Async Limitations</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``1(System.String,System.Func{``0,``0},System.Boolean)">
             <summary>
@@ -545,6 +560,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``2(System.String,System.Func{``1,``0,``1},System.Boolean)">
             <summary>
@@ -555,6 +572,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``3(System.String,System.Func{``2,``0,``1,``2},System.Boolean)">
             <summary>
@@ -566,6 +585,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``4(System.String,System.Func{``3,``0,``1,``2,``3},System.Boolean)">
             <summary>
@@ -578,6 +599,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``5(System.String,System.Func{``4,``0,``1,``2,``3,``4},System.Boolean)">
             <summary>
@@ -591,6 +614,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``6(System.String,System.Func{``5,``0,``1,``2,``3,``4,``5},System.Boolean)">
             <summary>
@@ -605,6 +630,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``7(System.String,System.Func{``6,``0,``1,``2,``3,``4,``5,``6},System.Boolean)">
             <summary>
@@ -620,6 +647,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``8(System.String,System.Func{``7,``0,``1,``2,``3,``4,``5,``6,``7},System.Boolean)">
             <summary>
@@ -636,6 +665,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``9(System.String,System.Func{``8,``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Boolean)">
             <summary>
@@ -653,6 +684,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``10(System.String,System.Func{``9,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},System.Boolean)">
             <summary>
@@ -671,6 +704,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``11(System.String,System.Func{``10,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},System.Boolean)">
             <summary>
@@ -690,6 +725,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``12(System.String,System.Func{``11,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},System.Boolean)">
             <summary>
@@ -710,6 +747,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``13(System.String,System.Func{``12,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},System.Boolean)">
             <summary>
@@ -731,6 +770,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``14(System.String,System.Func{``13,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},System.Boolean)">
             <summary>
@@ -753,6 +794,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``15(System.String,System.Func{``14,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},System.Boolean)">
             <summary>
@@ -776,6 +819,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``16(System.String,System.Func{``15,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},System.Boolean)">
             <summary>
@@ -800,6 +845,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``1(System.String,System.Func{``0,System.Object[],``0},System.Boolean)">
             <summary>
@@ -809,6 +856,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``1(System.String,``0,System.Func{``0,``0},System.Boolean)">
             <summary>
@@ -819,6 +868,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``2(System.String,``1,System.Func{``1,``0,``1},System.Boolean)">
             <summary>
@@ -830,6 +881,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``3(System.String,``2,System.Func{``2,``0,``1,``2},System.Boolean)">
             <summary>
@@ -842,6 +895,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``4(System.String,``3,System.Func{``3,``0,``1,``2,``3},System.Boolean)">
             <summary>
@@ -855,6 +910,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``5(System.String,``4,System.Func{``4,``0,``1,``2,``3,``4},System.Boolean)">
             <summary>
@@ -869,6 +926,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``6(System.String,``5,System.Func{``5,``0,``1,``2,``3,``4,``5},System.Boolean)">
             <summary>
@@ -884,6 +943,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``7(System.String,``6,System.Func{``6,``0,``1,``2,``3,``4,``5,``6},System.Boolean)">
             <summary>
@@ -900,6 +961,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``8(System.String,``7,System.Func{``7,``0,``1,``2,``3,``4,``5,``6,``7},System.Boolean)">
             <summary>
@@ -917,6 +980,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``9(System.String,``8,System.Func{``8,``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Boolean)">
             <summary>
@@ -935,6 +1000,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``10(System.String,``9,System.Func{``9,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},System.Boolean)">
             <summary>
@@ -954,6 +1021,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``11(System.String,``10,System.Func{``10,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},System.Boolean)">
             <summary>
@@ -974,6 +1043,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``12(System.String,``11,System.Func{``11,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},System.Boolean)">
             <summary>
@@ -995,6 +1066,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``13(System.String,``12,System.Func{``12,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},System.Boolean)">
             <summary>
@@ -1017,6 +1090,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``14(System.String,``13,System.Func{``13,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},System.Boolean)">
             <summary>
@@ -1040,6 +1115,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``15(System.String,``14,System.Func{``14,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},System.Boolean)">
             <summary>
@@ -1064,6 +1141,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``16(System.String,``15,System.Func{``15,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},System.Boolean)">
             <summary>
@@ -1089,6 +1168,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``1(System.String,``0,System.Func{``0,System.Object[],``0},System.Boolean)">
             <summary>
@@ -1099,6 +1180,8 @@
             <param name="seed">The initial accumulator value.</param>
             <param name="func">An accumulator function to be invoked on each element. Pass null to delete a function.</param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``2(System.String,``0,System.Func{``0,``0},System.Func{``0,``1},System.Boolean)">
             <summary>
@@ -1114,6 +1197,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``3(System.String,``1,System.Func{``1,``0,``1},System.Func{``1,``2},System.Boolean)">
             <summary>
@@ -1130,6 +1215,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``4(System.String,``2,System.Func{``2,``0,``1,``2},System.Func{``2,``3},System.Boolean)">
             <summary>
@@ -1147,6 +1234,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``5(System.String,``3,System.Func{``3,``0,``1,``2,``3},System.Func{``3,``4},System.Boolean)">
             <summary>
@@ -1165,6 +1254,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``6(System.String,``4,System.Func{``4,``0,``1,``2,``3,``4},System.Func{``4,``5},System.Boolean)">
             <summary>
@@ -1184,6 +1275,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``7(System.String,``5,System.Func{``5,``0,``1,``2,``3,``4,``5},System.Func{``5,``6},System.Boolean)">
             <summary>
@@ -1204,6 +1297,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``8(System.String,``6,System.Func{``6,``0,``1,``2,``3,``4,``5,``6},System.Func{``6,``7},System.Boolean)">
             <summary>
@@ -1225,6 +1320,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``9(System.String,``7,System.Func{``7,``0,``1,``2,``3,``4,``5,``6,``7},System.Func{``7,``8},System.Boolean)">
             <summary>
@@ -1247,6 +1344,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``10(System.String,``8,System.Func{``8,``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Func{``8,``9},System.Boolean)">
             <summary>
@@ -1270,6 +1369,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``11(System.String,``9,System.Func{``9,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},System.Func{``9,``10},System.Boolean)">
             <summary>
@@ -1294,6 +1395,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``12(System.String,``10,System.Func{``10,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},System.Func{``10,``11},System.Boolean)">
             <summary>
@@ -1319,6 +1422,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``13(System.String,``11,System.Func{``11,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},System.Func{``11,``12},System.Boolean)">
             <summary>
@@ -1345,6 +1450,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``14(System.String,``12,System.Func{``12,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},System.Func{``12,``13},System.Boolean)">
             <summary>
@@ -1372,6 +1479,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``15(System.String,``13,System.Func{``13,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},System.Func{``13,``14},System.Boolean)">
             <summary>
@@ -1400,6 +1509,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``16(System.String,``14,System.Func{``14,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},System.Func{``14,``15},System.Boolean)">
             <summary>
@@ -1429,6 +1540,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``17(System.String,``15,System.Func{``15,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},System.Func{``15,``16},System.Boolean)">
             <summary>
@@ -1459,6 +1572,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateAggregate``2(System.String,``0,System.Func{``0,System.Object[],``0},System.Func{``0,``1},System.Boolean)">
             <summary>
@@ -1474,6 +1589,8 @@
                 delete a function.
             </param>
             <param name="isDeterministic">Flag indicating whether the aggregate is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``1(System.String,System.Func{``0},System.Boolean)">
             <summary>
@@ -1483,6 +1600,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``2(System.String,System.Func{``0,``1},System.Boolean)">
             <summary>
@@ -1493,6 +1612,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``3(System.String,System.Func{``0,``1,``2},System.Boolean)">
             <summary>
@@ -1504,6 +1625,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``4(System.String,System.Func{``0,``1,``2,``3},System.Boolean)">
             <summary>
@@ -1516,6 +1639,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``5(System.String,System.Func{``0,``1,``2,``3,``4},System.Boolean)">
             <summary>
@@ -1529,6 +1654,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``6(System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Boolean)">
             <summary>
@@ -1543,6 +1670,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``7(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6},System.Boolean)">
             <summary>
@@ -1558,6 +1687,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``8(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7},System.Boolean)">
             <summary>
@@ -1574,6 +1705,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``9(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Boolean)">
             <summary>
@@ -1591,6 +1724,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``10(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},System.Boolean)">
             <summary>
@@ -1609,6 +1744,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``11(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},System.Boolean)">
             <summary>
@@ -1628,6 +1765,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``12(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},System.Boolean)">
             <summary>
@@ -1648,6 +1787,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``13(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},System.Boolean)">
             <summary>
@@ -1669,6 +1810,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``14(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},System.Boolean)">
             <summary>
@@ -1691,6 +1834,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``15(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},System.Boolean)">
             <summary>
@@ -1714,6 +1859,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``16(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},System.Boolean)">
             <summary>
@@ -1738,6 +1885,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``17(System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},System.Boolean)">
             <summary>
@@ -1763,6 +1912,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``1(System.String,System.Func{System.Object[],``0},System.Boolean)">
             <summary>
@@ -1772,6 +1923,8 @@
             <param name="name">The name of the SQL function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``2(System.String,``0,System.Func{``0,``1},System.Boolean)">
             <summary>
@@ -1783,6 +1936,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``3(System.String,``0,System.Func{``0,``1,``2},System.Boolean)">
             <summary>
@@ -1795,6 +1950,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``4(System.String,``0,System.Func{``0,``1,``2,``3},System.Boolean)">
             <summary>
@@ -1808,6 +1965,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``5(System.String,``0,System.Func{``0,``1,``2,``3,``4},System.Boolean)">
             <summary>
@@ -1822,6 +1981,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``6(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5},System.Boolean)">
             <summary>
@@ -1837,6 +1998,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``7(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6},System.Boolean)">
             <summary>
@@ -1853,6 +2016,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``8(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7},System.Boolean)">
             <summary>
@@ -1870,6 +2035,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``9(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Boolean)">
             <summary>
@@ -1888,6 +2055,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``10(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},System.Boolean)">
             <summary>
@@ -1907,6 +2076,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``11(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},System.Boolean)">
             <summary>
@@ -1927,6 +2098,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``12(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},System.Boolean)">
             <summary>
@@ -1948,6 +2121,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``13(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},System.Boolean)">
             <summary>
@@ -1970,6 +2145,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``14(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},System.Boolean)">
             <summary>
@@ -1993,6 +2170,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``15(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},System.Boolean)">
             <summary>
@@ -2017,6 +2196,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``16(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},System.Boolean)">
             <summary>
@@ -2042,6 +2223,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``17(System.String,``0,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},System.Boolean)">
             <summary>
@@ -2068,6 +2251,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateFunction``2(System.String,``0,System.Func{``0,System.Object[],``1},System.Boolean)">
             <summary>
@@ -2079,6 +2264,8 @@
             <param name="state">An object available during each invocation of the function.</param>
             <param name="function">The function to be invoked.</param>
             <param name="isDeterministic">Flag indicating whether the function is deterministic.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/user-defined-functions">User-Defined Functions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.#ctor">
             <summary>
@@ -2090,6 +2277,7 @@
                 Initializes a new instance of the <see cref="T:Microsoft.Data.Sqlite.SqliteConnection" /> class.
             </summary>
             <param name="connectionString">The string used to open the connection.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/connection-strings">Connection Strings</seealso>
             <seealso cref="T:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder" />
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteConnection.Handle">
@@ -2097,13 +2285,14 @@
                 Gets a handle to underlying database connection.
             </summary>
             <value>A handle to underlying database connection.</value>
-            <seealso href="http://sqlite.org/c3ref/sqlite3.html">Database Connection Handle</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/interop">Interoperability</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteConnection.ConnectionString">
             <summary>
                 Gets or sets a string used to open the connection.
             </summary>
             <value>A string used to open the connection.</value>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/connection-strings">Connection Strings</seealso>
             <seealso cref="T:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder" />
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteConnection.Database">
@@ -2125,6 +2314,7 @@
                 <see cref="M:Microsoft.Data.Sqlite.SqliteConnection.BeginTransaction" />.
             </summary>
             <value>The default <see cref="P:Microsoft.Data.Sqlite.SqliteCommand.CommandTimeout" /> value.</value>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteConnection.ServerVersion">
             <summary>
@@ -2167,7 +2357,8 @@
                 Releases any resources used by the connection and closes it.
             </summary>
             <param name="disposing">
-                true to release managed and unmanaged resources; false to release only unmanaged resources.
+                <see langword="true" /> to release managed and unmanaged resources;
+                <see langword="false" /> to release only unmanaged resources.
             </param>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateCommand">
@@ -2176,7 +2367,7 @@
             </summary>
             <returns>The new command.</returns>
             <remarks>
-                The command's <seealso cref="P:Microsoft.Data.Sqlite.SqliteCommand.Transaction" /> property will also be set to the current
+                The command's <see cref="P:Microsoft.Data.Sqlite.SqliteCommand.Transaction" /> property will also be set to the current
                 transaction.
             </remarks>
         </member>
@@ -2192,6 +2383,7 @@
             </summary>
             <param name="name">Name of the collation.</param>
             <param name="comparison">Method that compares two strings.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/collation">Collation</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.CreateCollation``1(System.String,``0,System.Func{``0,System.String,System.String,System.Int32})">
             <summary>
@@ -2201,12 +2393,35 @@
             <param name="name">Name of the collation.</param>
             <param name="state">State object passed to each invocation of the collation.</param>
             <param name="comparison">Method that compares two strings, using additional state.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/collation">Collation</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.BeginTransaction">
             <summary>
                 Begins a transaction on the connection.
             </summary>
             <returns>The transaction.</returns>
+            <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/transactions">Transactions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
+        </member>
+        <member name="M:Microsoft.Data.Sqlite.SqliteConnection.BeginTransaction(System.Boolean)">
+            <summary>
+                Begins a transaction on the connection.
+            </summary>
+            <param name="deferred">
+                <see langword="true" /> to defer the creation of the transaction.
+                This also causes transactions to upgrade from read transactions to write transactions as needed by their commands.
+            </param>
+            <returns>The transaction.</returns>
+            <remarks>
+                Warning, commands inside a deferred transaction can fail if they cause the
+                transaction to be upgraded from a read transaction to a write transaction
+                but the database is locked. The application will need to retry the entire
+                transaction when this happens.
+            </remarks>
+            <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/transactions">Transactions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.BeginDbTransaction(System.Data.IsolationLevel)">
             <summary>
@@ -2221,6 +2436,29 @@
             </summary>
             <param name="isolationLevel">The isolation level of the transaction.</param>
             <returns>The transaction.</returns>
+            <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/transactions">Transactions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
+        </member>
+        <member name="M:Microsoft.Data.Sqlite.SqliteConnection.BeginTransaction(System.Data.IsolationLevel,System.Boolean)">
+            <summary>
+                Begins a transaction on the connection.
+            </summary>
+            <param name="isolationLevel">The isolation level of the transaction.</param>
+            <param name="deferred">
+                <see langword="true" /> to defer the creation of the transaction.
+                This also causes transactions to upgrade from read transactions to write transactions as needed by their commands.
+            </param>
+            <returns>The transaction.</returns>
+            <remarks>
+                Warning, commands inside a deferred transaction can fail if they cause the
+                transaction to be upgraded from a read transaction to a write transaction
+                but the database is locked. The application will need to retry the entire
+                transaction when this happens.
+            </remarks>
+            <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/transactions">Transactions</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.ChangeDatabase(System.String)">
             <summary>
@@ -2233,8 +2471,8 @@
             <summary>
                 Enables extension loading on the connection.
             </summary>
-            <param name="enable">true to enable; false to disable.</param>
-            <seealso href="http://sqlite.org/loadext.html">Run-Time Loadable Extensions</seealso>
+            <param name="enable"> <see langword="true" /> to enable; <see langword="false" /> to disable. </param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/extensions">Extensions</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.LoadExtension(System.String,System.String)">
             <summary>
@@ -2242,12 +2480,14 @@
             </summary>
             <param name="file">The shared library containing the extension.</param>
             <param name="proc">The entry point. If null, the default entry point is used.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/extensions">Extensions</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.BackupDatabase(Microsoft.Data.Sqlite.SqliteConnection)">
             <summary>
                 Backup of the connected database.
             </summary>
             <param name="destination">The destination of the backup.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/backup">Online Backup</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnection.BackupDatabase(Microsoft.Data.Sqlite.SqliteConnection,System.String,System.String)">
             <summary>
@@ -2256,12 +2496,14 @@
             <param name="destination">The destination of the backup.</param>
             <param name="destinationName">The name of the destination database.</param>
             <param name="sourceName">The name of the source database.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/backup">Online Backup</seealso>
         </member>
         <member name="T:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder">
             <summary>
                 Provides a simple way to create and manage the contents of connection strings used by
                 <see cref="T:Microsoft.Data.Sqlite.SqliteConnection" />.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/connection-strings">Connection Strings</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder.#ctor">
             <summary>
@@ -2305,7 +2547,6 @@
                 Gets or sets the caching mode used by the connection.
             </summary>
             <value>The caching mode used by the connection.</value>
-            <seealso href="http://sqlite.org/sharedcache.html">SQLite Shared-Cache Mode</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder.Password">
             <summary>
@@ -2313,6 +2554,7 @@
                 support encryption. When specified, <c>PRAGMA key</c> is sent immediately after opening the connection.
             </summary>
             <value>The encryption key.</value>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/encryption">Encryption</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder.ForeignKeys">
             <summary>
@@ -2348,21 +2590,21 @@
                 Determines whether the specified key is used by the connection string.
             </summary>
             <param name="keyword">The key to look for.</param>
-            <returns>true if it is use; otherwise, false.</returns>
+            <returns> <see langword="true" /> if it is used; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder.Remove(System.String)">
             <summary>
                 Removes the specified key and its value from the connection string.
             </summary>
             <param name="keyword">The key to remove.</param>
-            <returns>true if the key was used; otherwise, false.</returns>
+            <returns> <see langword="true" /> if the key was used; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder.ShouldSerialize(System.String)">
             <summary>
                 Determines whether the specified key should be serialized into the connection string.
             </summary>
             <param name="keyword">The key to check.</param>
-            <returns>true if it should be serialized; otherwise, false.</returns>
+            <returns><see langword="true" /> if it should be serialized; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteConnectionStringBuilder.TryGetValue(System.String,System.Object@)">
             <summary>
@@ -2370,12 +2612,13 @@
             </summary>
             <param name="keyword">The key.</param>
             <param name="value">The value.</param>
-            <returns>true if the key was used; otherwise, false.</returns>
+            <returns><see langword="true" /> if the key was used; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="T:Microsoft.Data.Sqlite.SqliteDataReader">
             <summary>
                 Provides methods for reading the result of a command executed against a SQLite database.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteDataReader.Depth">
             <summary>
@@ -2394,7 +2637,7 @@
                 Gets a handle to underlying prepared statement.
             </summary>
             <value>A handle to underlying prepared statement.</value>
-            <seealso href="http://sqlite.org/c3ref/stmt.html">Prepared Statement Object</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/interop">Interoperability</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteDataReader.HasRows">
             <summary>
@@ -2420,6 +2663,7 @@
             </summary>
             <param name="name">The name of the column. The value is case-sensitive.</param>
             <returns>The value.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteDataReader.Item(System.Int32)">
             <summary>
@@ -2427,6 +2671,7 @@
             </summary>
             <param name="ordinal">The zero-based column ordinal.</param>
             <returns>The value.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetEnumerator">
             <summary>
@@ -2438,13 +2683,16 @@
             <summary>
                 Advances to the next row in the result set.
             </summary>
-            <returns>true if there are more rows; otherwise, false.</returns>
+            <returns><see langword="true" /> if there are more rows; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.NextResult">
             <summary>
                 Advances to the next result set for batched statements.
             </summary>
-            <returns>true if there are more result sets; otherwise, false.</returns>
+            <returns><see langword="true" /> if there are more result sets; otherwise, <see langword="false" />. </returns>
+            <exception cref="T:Microsoft.Data.Sqlite.SqliteException">A SQLite error occurs during execution.</exception>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/batching">Batching</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.Close">
             <summary>
@@ -2456,7 +2704,8 @@
                 Releases any resources used by the data reader and closes it.
             </summary>
             <param name="disposing">
-                true to release managed and unmanaged resources; false to release only unmanaged resources.
+                <see langword="true" /> to release managed and unmanaged resources;
+                <see langword="false" /> to release only unmanaged resources.
             </param>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetName(System.Int32)">
@@ -2481,7 +2730,7 @@
             <param name="ordinal">The zero-based column ordinal.</param>
             <returns>The data type name of the column.</returns>
             <remarks>Due to SQLite's dynamic type system, this may not reflect the actual type of the value.</remarks>
-            <seealso href="http://sqlite.org/datatype3.html">Datatypes In SQLite Version 3</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetFieldType(System.Int32)">
             <summary>
@@ -2495,7 +2744,7 @@
                 Gets a value indicating whether the specified column is <see cref="T:System.DBNull" />.
             </summary>
             <param name="ordinal">The zero-based column ordinal.</param>
-            <returns>true if the specified column is <see cref="T:System.DBNull" />; otherwise, false.</returns>
+            <returns><see langword="true" /> if the specified column is <see cref="T:System.DBNull" />; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetBoolean(System.Int32)">
             <summary>
@@ -2625,6 +2874,14 @@
             </summary>
             <param name="ordinal">The zero-based column ordinal.</param>
             <returns>The returned object.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/blob-io">BLOB I/O</seealso>
+        </member>
+        <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetTextReader(System.Int32)">
+            <summary>
+                Retrieves data as a <see cref="T:System.IO.TextReader" />.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The returned object.</returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetFieldValue``1(System.Int32)">
             <summary>
@@ -2633,6 +2890,7 @@
             <typeparam name="T">The type of the value.</typeparam>
             <param name="ordinal">The zero-based column ordinal.</param>
             <returns>The value of the column.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetValue(System.Int32)">
             <summary>
@@ -2640,6 +2898,7 @@
             </summary>
             <param name="ordinal">The zero-based column ordinal.</param>
             <returns>The value of the column.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetValues(System.Object[])">
             <summary>
@@ -2647,17 +2906,20 @@
             </summary>
             <param name="values">An array into which the values are copied.</param>
             <returns>The number of values copied into the array.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteDataReader.GetSchemaTable">
             <summary>
                 Returns a System.Data.DataTable that describes the column metadata of the System.Data.Common.DbDataReader.
             </summary>
             <returns>A System.Data.DataTable that describes the column metadata.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/metadata">Metadata</seealso>
         </member>
         <member name="T:Microsoft.Data.Sqlite.SqliteException">
             <summary>
                 Represents a SQLite error.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/database-errors">Database Errors</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteException.#ctor(System.String,System.Int32)">
             <summary>
@@ -2679,14 +2941,14 @@
                 Gets the SQLite error code.
             </summary>
             <value>The SQLite error code.</value>
-            <seealso href="http://sqlite.org/rescode.html">SQLite Result Codes</seealso>
+            <seealso href="https://www.sqlite.org/rescode.html">SQLite Result Codes</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteException.SqliteExtendedErrorCode">
             <summary>
                 Gets the extended SQLite error code.
             </summary>
             <value>The SQLite error code.</value>
-            <seealso href="https://sqlite.org/rescode.html#extrc">SQLite Result Codes</seealso>
+            <seealso href="https://www.sqlite.org/rescode.html#extrc">SQLite Result Codes</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(System.Int32,SQLitePCL.sqlite3)">
             <summary>
@@ -2756,18 +3018,21 @@
             <summary>
                 Opens an in-memory database.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/in-memory-databases">In-Memory Databases</seealso>
         </member>
         <member name="T:Microsoft.Data.Sqlite.SqliteParameter">
             <summary>
                 Represents a parameter and its value in a <see cref="T:Microsoft.Data.Sqlite.SqliteCommand" />.
             </summary>
             <remarks>Due to SQLite's dynamic type system, parameter values are not converted.</remarks>
-            <seealso href="http://sqlite.org/datatype3.html">Datatypes In SQLite Version 3</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameter.#ctor">
             <summary>
                 Initializes a new instance of the <see cref="T:Microsoft.Data.Sqlite.SqliteParameter" /> class.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameter.#ctor(System.String,System.Object)">
             <summary>
@@ -2775,6 +3040,8 @@
             </summary>
             <param name="name">The name of the parameter.</param>
             <param name="value">The value of the parameter. Can be null.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameter.#ctor(System.String,Microsoft.Data.Sqlite.SqliteType)">
             <summary>
@@ -2782,6 +3049,7 @@
             </summary>
             <param name="name">The name of the parameter.</param>
             <param name="type">The type of the parameter.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameter.#ctor(System.String,Microsoft.Data.Sqlite.SqliteType,System.Int32)">
             <summary>
@@ -2790,6 +3058,7 @@
             <param name="name">The name of the parameter.</param>
             <param name="type">The type of the parameter.</param>
             <param name="size">The maximum size, in bytes, of the parameter.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameter.#ctor(System.String,Microsoft.Data.Sqlite.SqliteType,System.Int32,System.String)">
             <summary>
@@ -2799,6 +3068,7 @@
             <param name="type">The type of the parameter.</param>
             <param name="size">The maximum size, in bytes, of the parameter.</param>
             <param name="sourceColumn">The source column used for loading the value. Can be null.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteParameter.DbType">
             <summary>
@@ -2806,15 +3076,13 @@
             </summary>
             <value>The type of the parameter.</value>
             <remarks>Due to SQLite's dynamic type system, parameter values are not converted.</remarks>
-            <seealso href="http://sqlite.org/datatype3.html">Datatypes In SQLite Version 3</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteParameter.SqliteType">
             <summary>
                 Gets or sets the SQLite type of the parameter.
             </summary>
             <value>The SQLite type of the parameter.</value>
-            <remarks>Due to SQLite's dynamic type system, parameter values are not converted.</remarks>
-            <seealso href="http://sqlite.org/datatype3.html">Datatypes In SQLite Version 3</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteParameter.Direction">
             <summary>
@@ -2839,6 +3107,7 @@
                 Gets or sets the maximum size, in bytes, of the parameter.
             </summary>
             <value>The maximum size, in bytes, of the parameter.</value>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteParameter.SourceColumn">
             <summary>
@@ -2858,7 +3127,7 @@
             </summary>
             <value>The value of the parameter.</value>
             <remarks>Due to SQLite's dynamic type system, parameter values are not converted.</remarks>
-            <seealso href="http://sqlite.org/datatype3.html">Datatypes In SQLite Version 3</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameter.ResetDbType">
             <summary>
@@ -2874,6 +3143,7 @@
             <summary>
                 Represents a collection of SQLite parameters.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.#ctor">
             <summary>
@@ -2912,6 +3182,7 @@
             </summary>
             <param name="value">The parameter to add. Must be a <see cref="T:Microsoft.Data.Sqlite.SqliteParameter" />.</param>
             <returns>The zero-based index of the parameter that was added.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.Add(Microsoft.Data.Sqlite.SqliteParameter)">
             <summary>
@@ -2919,6 +3190,7 @@
             </summary>
             <param name="value">The parameter to add.</param>
             <returns>The parameter that was added.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.Add(System.String,Microsoft.Data.Sqlite.SqliteType)">
             <summary>
@@ -2927,6 +3199,7 @@
             <param name="parameterName">The name of the parameter.</param>
             <param name="type">The SQLite type of the parameter.</param>
             <returns>The parameter that was added.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.Add(System.String,Microsoft.Data.Sqlite.SqliteType,System.Int32)">
             <summary>
@@ -2936,6 +3209,7 @@
             <param name="type">The SQLite type of the parameter.</param>
             <param name="size">The maximum size, in bytes, of the parameter.</param>
             <returns>The parameter that was added.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.Add(System.String,Microsoft.Data.Sqlite.SqliteType,System.Int32,System.String)">
             <summary>
@@ -2948,6 +3222,7 @@
                 The source column used for loading the value of the parameter. Can be null.
             </param>
             <returns>The parameter that was added.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.AddRange(System.Array)">
             <summary>
@@ -2956,12 +3231,14 @@
             <param name="values">
                 An array of parameters to add. They must be <see cref="T:Microsoft.Data.Sqlite.SqliteParameter" /> objects.
             </param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.AddRange(System.Collections.Generic.IEnumerable{Microsoft.Data.Sqlite.SqliteParameter})">
             <summary>
                 Adds multiple parameters to the collection.
             </summary>
             <param name="values">The parameters to add.</param>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.AddWithValue(System.String,System.Object)">
             <summary>
@@ -2970,6 +3247,8 @@
             <param name="parameterName">The name of the parameter.</param>
             <param name="value">The value of the parameter. Can be null.</param>
             <returns>The parameter that was added.</returns>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/parameters">Parameters</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.Clear">
             <summary>
@@ -2981,21 +3260,21 @@
                 Gets a value indicating whether the collection contains the specified parameter.
             </summary>
             <param name="value">The parameter to look for. Must be a <see cref="T:Microsoft.Data.Sqlite.SqliteParameter" />.</param>
-            <returns>true if the collection contains the parameter; otherwise, false.</returns>
+            <returns><see langword="true" /> if the collection contains the parameter; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.Contains(Microsoft.Data.Sqlite.SqliteParameter)">
             <summary>
                 Gets a value indicating whether the collection contains the specified parameter.
             </summary>
             <param name="value">The parameter to look for.</param>
-            <returns>true if the collection contains the parameter; otherwise, false.</returns>
+            <returns><see langword="true" /> if the collection contains the parameter; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.Contains(System.String)">
             <summary>
                 Gets a value indicating whether the collection contains a parameter with the specified name.
             </summary>
             <param name="value">The name of the parameter.</param>
-            <returns>true if the collection contains the parameter; otherwise, false.</returns>
+            <returns><see langword="true" /> if the collection contains the parameter; otherwise, <see langword="false" />. </returns>
         </member>
         <member name="M:Microsoft.Data.Sqlite.SqliteParameterCollection.CopyTo(System.Array,System.Int32)">
             <summary>
@@ -3110,6 +3389,7 @@
             <summary>
                 Represents a transaction made against a SQLite database.
             </summary>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/transactions">Transactions</seealso>
         </member>
         <member name="P:Microsoft.Data.Sqlite.SqliteTransaction.Connection">
             <summary>
@@ -3145,14 +3425,15 @@
                 Releases any resources used by the transaction and rolls it back.
             </summary>
             <param name="disposing">
-                true to release managed and unmanaged resources; false to release only unmanaged resources.
+                <see langword="true" /> to release managed and unmanaged resources;
+                <see langword="false" /> to release only unmanaged resources.
             </param>
         </member>
         <member name="T:Microsoft.Data.Sqlite.SqliteType">
             <summary>
                 Represents the type affinities used by columns in SQLite tables.
             </summary>
-            <seealso href="http://sqlite.org/datatype3.html">Datatypes In SQLite Version 3</seealso>
+            <seealso href="https://docs.microsoft.com/dotnet/standard/data/sqlite/types">Data Types</seealso>
         </member>
         <member name="F:Microsoft.Data.Sqlite.SqliteType.Integer">
             <summary>

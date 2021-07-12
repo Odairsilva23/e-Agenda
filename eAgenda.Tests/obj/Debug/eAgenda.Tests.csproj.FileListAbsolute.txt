@@ -1,6 +1,3 @@
-C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
-C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
-C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\eAgenda.Tests.dll.config
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\eAgenda.Tests.dll
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\eAgenda.Tests.pdb
@@ -97,3 +94,8 @@ C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.T
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\obj\Debug\eAgenda.Tests.csproj.CopyComplete
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\obj\Debug\eAgenda.Tests.dll
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\obj\Debug\eAgenda.Tests.pdb
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\x86\sqlite3.dll
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\x64\sqlite3.dll
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\eAgenda.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll

@@ -76,8 +76,8 @@ C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\obj\Debug\eAgenda.Dominio.csproj.AssemblyReference.cache
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\obj\Debug\eAgenda.Dominio.csproj.CoreCompileInputs.cache
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\obj\Debug\eAgenda.Dominio.csproj.CopyComplete
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\obj\Debug\eAgenda.Dominio.dll
 C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\obj\Debug\eAgenda.Dominio.pdb
-C:\Users\odair\OneDrive\Área de Trabalho\academia2021\e-Agenda-master\e-Agenda.Dominio\obj\Debug\eAgenda.Dominio.csproj.AssemblyReference.cache

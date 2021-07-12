@@ -106,11 +106,7 @@ namespace eAgenda.Controladores.Shared
 
             return numberRows > 0;
         }
-        private static bool IsNullOrEmpty(this object value)
-        {
-            return (value is string && string.IsNullOrEmpty((string)value)) ||
-                    value == null;
-        }
+       
 
         #region Metodos Privados
         private static void SetParameters(this SqlCommand command, Dictionary<string, object> parameters)
@@ -134,11 +130,12 @@ namespace eAgenda.Controladores.Shared
         {
             return sql + ";SELECT SCOPE_IDENTITY()";
         }
-        private static string AppendSelectIdentityLite(this string sql)
-        {
-            return sql + ";SELECT last_insert_rowid()";
-        }
 
+        private static bool IsNullOrEmpty(this object value)
+        {
+            return (value is string && string.IsNullOrEmpty((string)value)) ||
+                    value == null;
+        }
         #endregion
     }
 }

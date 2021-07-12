@@ -1668,13 +1668,6 @@
             upon for security critical uses or applications.
             </summary>
         </member>
-        <member name="F:System.Data.SQLite.SQLiteConnectionFlags.NoCoreFunctions">
-            <summary>
-            Skip adding the extension functions provided by the native interop
-            assembly if they would conflict with a function provided by the
-            SQLite core library.
-            </summary>
-        </member>
         <member name="F:System.Data.SQLite.SQLiteConnectionFlags.BindAndGetAllAsText">
             <summary>
             When binding parameter values or returning column values, always
@@ -3682,18 +3675,6 @@
             <description></description>
             </item>
             <item>
-            <description>TextPassword</description>
-            <description>
-            {password} - Using this parameter requires that the legacy CryptoAPI based
-            codec (or the SQLite Encryption Extension) be enabled at compile-time for
-            both the native interop assembly and the core managed assemblies; otherwise,
-            using this parameter may result in an exception being thrown when attempting
-            to open the connection.
-            </description>
-            <description>N</description>
-            <description></description>
-            </item>
-            <item>
             <description>Enlist</description>
             <description>
             <b>Y</b> - Automatically enlist in distributed transactions
@@ -3989,18 +3970,6 @@
             The database filename minus path and extension
             </summary>
         </member>
-        <member name="F:System.Data.SQLite.SQLiteConnection._password">
-            <summary>
-            Temporary password storage, emptied after the database has been opened
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.SQLiteConnection._passwordWasText">
-            <summary>
-            This will be non-zero if the "TextPassword" connection string property
-            was used.  When this value is non-zero, <see cref="M:System.Data.SQLite.SQLiteConnection.ChangePassword(System.Byte[])" />
-            will retain treatment of the password as a NUL-terminated text string.
-            </summary>
-        </member>
         <member name="F:System.Data.SQLite.SQLiteConnection._baseSchemaName">
             <summary>
             The "stub" (i.e. placeholder) base schema name to use when returning
@@ -4115,12 +4084,6 @@
             Non-zero if this instance owns the native connection handle and
             should dispose of it when it is no longer needed.
             </param>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.InitializeDefaults">
-            <summary>
-            Initializes user-settable properties with their default values.
-            This method is only intended to be used from the constructor.
-            </summary>
         </member>
         <member name="M:System.Data.SQLite.SQLiteConnection.#ctor(System.String,System.Boolean)">
             <summary>
@@ -4452,39 +4415,6 @@
             <returns>
             The list of key/value pairs corresponding to the parameters specified
             within the connection string.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.EscapeForConnectionString(System.String,System.Boolean)">
-            <summary>
-            Attempts to escape the specified connection string property name or
-            value in a way that is compatible with the connection string parser.
-            </summary>
-            <param name="value">
-            The connection string property name or value to escape.
-            </param>
-            <param name="allowEquals">
-            Non-zero if the equals sign is permitted in the string.  If this is
-            zero and the string contains an equals sign, an exception will be
-            thrown.
-            </param>
-            <returns>
-            The original string, with all special characters escaped.  If the
-            original string contains equals signs, they will not be escaped.
-            Instead, they will be preserved verbatim.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.BuildConnectionString(System.Collections.Generic.SortedList{System.String,System.String})">
-            <summary>
-            Builds a connection string from a list of key/value pairs.
-            </summary>
-            <param name="opts">
-            The list of key/value pairs corresponding to the parameters to be
-            specified within the connection string.
-            </param>
-            <returns>
-            The connection string.  Depending on how the connection string was
-            originally parsed, the returned connection string value may not be
-            usable in a subsequent call to the <see cref="M:System.Data.SQLite.SQLiteConnection.Open" /> method.
             </returns>
         </member>
         <member name="M:System.Data.SQLite.SQLiteConnection.Dispose">
@@ -5372,40 +5302,6 @@
         </member>
         <member name="M:System.Data.SQLite.SQLiteConnection.LogMessage(System.Int32,System.String)">
             Add a log message via the SQLite sqlite3_log interface.
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.ChangePassword(System.String)">
-            <summary>
-            Change the password (or assign a password) to an open database.
-            </summary>
-            <remarks>
-            No readers or writers may be active for this process.  The database must already be open
-            and if it already was password protected, the existing password must already have been supplied.
-            </remarks>
-            <param name="newPassword">The new password to assign to the database</param>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.ChangePassword(System.Byte[])">
-            <summary>
-            Change the password (or assign a password) to an open database.
-            </summary>
-            <remarks>
-            No readers or writers may be active for this process.  The database must already be open
-            and if it already was password protected, the existing password must already have been supplied.
-            </remarks>
-            <param name="newPassword">The new password to assign to the database</param>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.SetPassword(System.String)">
-            <summary>
-            Sets the password for a password-protected database.  A password-protected database is
-            unusable for any operation until the password has been set.
-            </summary>
-            <param name="databasePassword">The password for the database</param>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteConnection.SetPassword(System.Byte[])">
-            <summary>
-            Sets the password for a password-protected database.  A password-protected database is
-            unusable for any operation until the password has been set.
-            </summary>
-            <param name="databasePassword">The password for the database</param>
         </member>
         <member name="M:System.Data.SQLite.SQLiteConnection.SetAvRetry(System.Int32@,System.Int32@)">
             <summary>
@@ -6371,11 +6267,6 @@
         <member name="P:System.Data.SQLite.SQLiteConnectionStringBuilder.HexPassword">
             <summary>
             Gets/sets the database encryption hexadecimal password
-            </summary>
-        </member>
-        <member name="P:System.Data.SQLite.SQLiteConnectionStringBuilder.TextPassword">
-            <summary>
-            Gets/sets the database encryption textual password
             </summary>
         </member>
         <member name="P:System.Data.SQLite.SQLiteConnectionStringBuilder.PageSize">
@@ -9058,11 +8949,6 @@
             Data read from the file system appears to be incorrect.
             </summary>
         </member>
-        <member name="F:System.Data.SQLite.SQLiteErrorCode.IoErr_CorruptFs">
-            <summary>
-            File system corruption was detected during a read or write.
-            </summary>
-        </member>
         <member name="F:System.Data.SQLite.SQLiteErrorCode.Locked_SharedCache">
             <summary>
             A database table is locked in shared-cache mode.
@@ -9221,11 +9107,6 @@
         <member name="F:System.Data.SQLite.SQLiteErrorCode.Constraint_Pinned">
             <summary>
             A database cursor is busy and cannot be moved.
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.SQLiteErrorCode.Misuse_No_License">
-            <summary>
-            Method called without an appropriate license.
             </summary>
         </member>
         <member name="F:System.Data.SQLite.SQLiteErrorCode.Notice_Recover_Wal">
@@ -10366,22 +10247,10 @@
             callback for the whole process.
             </summary>
         </member>
-        <member name="F:System.Data.SQLite.SQLiteLog._initializeTimeout">
-            <summary>
-            Maximum number of milliseconds a non-primary thread should wait
-            for the <see cref="M:System.Data.SQLite.SQLiteLog.PrivateInitialize(System.String)" /> method to be completed.
-            </summary>
-        </member>
         <member name="F:System.Data.SQLite.SQLiteLog.syncRoot">
             <summary>
             Object used to synchronize access to the static instance data
             for this class.
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.SQLiteLog._initializeEvent">
-            <summary>
-            This will be signaled when the <see cref="M:System.Data.SQLite.SQLiteLog.PrivateInitialize(System.String)" />
-            method has been completed.
             </summary>
         </member>
         <member name="F:System.Data.SQLite.SQLiteLog._domainUnload">
@@ -10413,22 +10282,9 @@
         <member name="F:System.Data.SQLite.SQLiteLog._initializeCallCount">
             <summary>
             The number of times that the <see cref="M:System.Data.SQLite.SQLiteLog.Initialize(System.String)" />
-            method has been called when the logging subystem was actually
-            eligible to be initialized (i.e. without the "No_SQLiteLog"
-            environment variable being set).
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.SQLiteLog._uninitializeCallCount">
-            <summary>
-            The number of times that the <see cref="M:System.Data.SQLite.SQLiteLog.Uninitialize" /> method
-            has been called.
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.SQLiteLog._initializeDoneCount">
-            <summary>
-            The number of times that the <see cref="M:System.Data.SQLite.SQLiteLog.Initialize(System.String)" />
-            method has been completed (i.e. without the "No_SQLiteLog"
-            environment variable being set).
+            has been called when the logging subystem was actually eligible
+            to be initialized (i.e. without the "No_SQLiteLog" environment
+            variable being set).
             </summary>
         </member>
         <member name="F:System.Data.SQLite.SQLiteLog._attemptedInitialize">
@@ -10442,17 +10298,6 @@
             This will be non-zero if logging is currently enabled.
             </summary>
         </member>
-        <member name="M:System.Data.SQLite.SQLiteLog.CreateAndOrGetTheEvent">
-            <summary>
-            Creates the <see cref="T:System.Threading.EventWaitHandle" /> that will be used to
-            signal completion of the <see cref="M:System.Data.SQLite.SQLiteLog.PrivateInitialize(System.String)" /> method,
-            if necessary, and then returns it.
-            </summary>
-            <returns>
-            The <see cref="T:System.Threading.EventWaitHandle" /> that will be used to signal
-            completion of the <see cref="M:System.Data.SQLite.SQLiteLog.PrivateInitialize(System.String)" /> method.
-            </returns>
-        </member>
         <member name="M:System.Data.SQLite.SQLiteLog.Initialize">
             <summary>
             Initializes the SQLite logging facilities.
@@ -10460,42 +10305,11 @@
         </member>
         <member name="M:System.Data.SQLite.SQLiteLog.Initialize(System.String)">
             <summary>
-            Initializes the SQLite logging facilities -OR- waits for the
-            SQLite logging facilities to be initialized by another thread.
-            </summary>
-            <param name="className">
-            The name of the managed class that called this method.  This
-            parameter may be null.
-            </param>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteLog.PrivateInitialize(System.String)">
-            <summary>
             Initializes the SQLite logging facilities.
             </summary>
             <param name="className">
             The name of the managed class that called this method.  This
             parameter may be null.
-            </param>
-            <returns>
-            Non-zero if everything was fully initialized successfully.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteLog.Uninitialize">
-            <summary>
-            Uninitializes the SQLite logging facilities.
-            </summary>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteLog.Uninitialize(System.String,System.Boolean)">
-            <summary>
-            Uninitializes the SQLite logging facilities.
-            </summary>
-            <param name="className">
-            The name of the managed class that called this method.  This
-            parameter may be null.
-            </param>
-            <param name="shutdown">
-            Non-zero if the native SQLite library should be shutdown prior
-            to attempting to unset its logging callback.
             </param>
         </member>
         <member name="M:System.Data.SQLite.SQLiteLog.DomainUnload(System.Object,System.EventArgs)">
@@ -10516,13 +10330,6 @@
             <summary>
             If this property is true, logging is enabled; otherwise, logging is
             disabled.  When logging is disabled, no logging events will fire.
-            </summary>
-        </member>
-        <member name="P:System.Data.SQLite.SQLiteLog.InternalEnabled">
-            <summary>
-            If this property is true, logging is enabled; otherwise, logging is
-            disabled.  When logging is disabled, no logging events will fire.
-            For internal use only.
             </summary>
         </member>
         <member name="M:System.Data.SQLite.SQLiteLog.LogMessage(System.String)">
@@ -11945,24 +11752,13 @@
         </member>
         <member name="F:System.Data.SQLite.UnsafeNativeMethods.ConfigFileExtension">
             <summary>
-            The primary file extension used for the XML configuration file.
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.UnsafeNativeMethods.AltConfigFileExtension">
-            <summary>
-            The secondary file extension used for the XML configuration file.
+            The file extension used for the XML configuration file.
             </summary>
         </member>
         <member name="F:System.Data.SQLite.UnsafeNativeMethods.XmlConfigFileName">
             <summary>
-            This is the name of the primary XML configuration file specific
-            to the System.Data.SQLite assembly.
-            </summary>
-        </member>
-        <member name="F:System.Data.SQLite.UnsafeNativeMethods.XmlAltConfigFileName">
-            <summary>
-            This is the name of the secondary XML configuration file specific
-            to the System.Data.SQLite assembly.
+            This is the name of the XML configuration file specific to the
+            System.Data.SQLite assembly.
             </summary>
         </member>
         <member name="F:System.Data.SQLite.UnsafeNativeMethods.XmlConfigDirectoryToken">
@@ -12117,7 +11913,7 @@
             to indicate an error.  This method cannot fail.
             </returns>
         </member>
-        <member name="M:System.Data.SQLite.UnsafeNativeMethods.GetSettingValueViaXmlConfigFile(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+        <member name="M:System.Data.SQLite.UnsafeNativeMethods.GetSettingValueViaXmlConfigFile(System.String,System.String,System.String,System.Boolean)">
             <summary>
             Queries and returns the value of the specified setting, using the
             specified XML configuration file.
@@ -12136,11 +11932,6 @@
             Non-zero to expand any environment variable references contained in
             the setting value to be returned.  This has no effect on the .NET
             Compact Framework.
-            </param>
-            <param name="tokens">
-            Non-zero to replace any special token references contained in the
-            setting value to be returned.  This has no effect on the .NET Compact
-            Framework.
             </param>
             <returns>
             The value of the setting -OR- the default value specified by
@@ -12978,41 +12769,6 @@
             the idxNum or idxStr output fields.
             </para>
             <para>
-            For the LIKE, GLOB, REGEXP, and MATCH operators, the 
-            aConstraint[].iColumn value is the virtual table column that
-            is the left operand of the operator.  However, if these operators
-            are expressed as function calls instead of operators, then
-            the aConstraint[].iColumn value references the virtual table
-            column that is the second argument to that function:
-            </para>
-            <para><code>
-            LIKE(<i>EXPR</i>, <i>column</i>)<![CDATA[<br>]]>
-            GLOB(<i>EXPR</i>, <i>column</i>)<![CDATA[<br>]]>
-            REGEXP(<i>EXPR</i>, <i>column</i>)<![CDATA[<br>]]>
-            MATCH(<i>EXPR</i>, <i>column</i>)<![CDATA[<br>]]>
-            </code></para>
-            <para>
-            Hence, as far as the xBestIndex() method is concerned, the following
-            two forms are equivalent:
-            </para>
-            <para><code>
-            <i>column</i> LIKE <i>EXPR</i><![CDATA[<br>]]>
-            LIKE(<i>EXPR</i>,<i>column</i>)
-            </code></para>
-            <para>
-            This special behavior of looking at the second argument of a function
-            only occurs for the LIKE, GLOB, REGEXP, and MATCH functions.  For all
-            other functions, the aConstraint[].iColumn value references the first
-            argument of the function.
-            </para>
-            <para>
-            This special feature of LIKE, GLOB, REGEXP, and MATCH does not
-            apply to the xFindFunction() method, however.  The
-            xFindFunction() method always keys off of the left operand of an
-            LIKE, GLOB, REGEXP, or MATCH operator but off of the first argument
-            to function-call equivalents of those operators.
-            </para>
-            <para>
             Given all of the information above, the job of the xBestIndex 
             method it to figure out the best way to search the virtual table.
             </para>
@@ -13787,17 +13543,10 @@
             </code></para>
             <para>
             Note that infix functions (LIKE, GLOB, REGEXP, and MATCH) reverse 
-            the order of their arguments. So "like(A,B)" would normally work the same
-            as "B like A".
-            However, xFindFunction() always looks a the left-most argument, not
-            the first logical argument.
-            Hence, for the form "B like A", SQLite looks at the
-            left operand "B" and if that operand is a virtual table column
-            it invokes the xFindFunction() method on that virtual table.
-            But if the form "like(A,B)" is used instead, then SQLite checks
-            the A term to see if it is column of a virtual table and if so
-            it invokes the xFindFunction() method for the virtual table of
-            column A. 
+            the order of their arguments. So "like(A,B)" is equivalent to "B like A". 
+            For the form "B like A" the B term is considered the first argument 
+            to the function. But for "like(A,B)" the A term is considered the 
+            first argument.
             </para>
             <para>
             The function pointer returned by this routine must be valid for
@@ -19580,16 +19329,6 @@
             otherwise, zero.
             </returns>
         </member>
-        <member name="M:System.Data.SQLite.ISQLiteSession.GetMemoryBytesInUse">
-            <summary>
-            This method attempts to determine the amount of memory used by the
-            session.
-            </summary>
-            <returns>
-            Number of bytes used by the session -OR- negative one if its value
-            cannot be obtained.
-            </returns>
-        </member>
         <member name="M:System.Data.SQLite.ISQLiteSession.AttachTable(System.String)">
             <summary>
             Upon success, causes changes to the specified table(s) to start
@@ -20630,15 +20369,6 @@
             <returns>
             Non-zero if there are no changes within the data for this session;
             otherwise, zero.
-            </returns>
-        </member>
-        <member name="M:System.Data.SQLite.SQLiteSession.GetMemoryBytesInUse">
-            <summary>
-            This method attempts to determine the amount of memory used by the
-            session.
-            </summary>
-            <returns>
-            The number of bytes used by the session.
             </returns>
         </member>
         <member name="M:System.Data.SQLite.SQLiteSession.AttachTable(System.String)">
